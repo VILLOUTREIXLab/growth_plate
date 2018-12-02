@@ -13,4 +13,6 @@ This repository contains the Matlab scripts used to generate 3D Maps of the grow
   * visualization options (az, el, visualizing nuclei, cells, crossed features)
   * NB: when drawing combined maps for DT and PT, the names of the paths are stored in the following way ```opt.path_DT = {'data/Nuclei_and_Cells_DT_S18_m6_wt/';'data/Nuclei_and_Cells_DT_S18_m6_wt/';}``` and ```opt.path_PT = {'data/Nuclei_and_Cells_PT_S18_m6_wt/';'data/Nuclei_and_Cells_PT_S18_m6_wt/';}``` - the order of the names in the lists should be the same for PT and DT
   
-3 - For any question, please contact me: paul.villoutreix@gmail.com
+3 - run the file ```main.m```
+
+4 - For any question, please contact me: paul.villoutreix@gmail.com
