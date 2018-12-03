@@ -67,13 +67,13 @@ if exist([opt.path{gp},'all_cells.mat'], 'file') == 0
     end
     
     % see if we include Delaunay Density for the cells 
-    if exist([opt.path{gp},'point_density_cells.mat'], 'file') == 2
-        res_pd = load([opt.path{gp},'point_density_cells.mat']);
-    else
+    if exist([opt.path{gp},'point_density_cells.mat'], 'file') == 0
         disp('Computing Delaunay density ...')
         [V,X,Y,Z, point_density] = calculate_nuclei_density(all_cells(:,[5,6,7]), [1, 1, 1], 2);
         save([opt.path{gp},'point_density_cells.mat'],'V','X','Y','Z','point_density');
     end
+    
+    res_pd = load([opt.path{gp},'point_density_cells.mat']);
     
     all_cells(:,20) = res_pd.point_density;
     
