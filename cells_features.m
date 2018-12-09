@@ -55,10 +55,7 @@ if exist([opt.path{gp},'all_cells.mat'], 'file') == 0
             % system
             indtemp1 = find(coordinates(:,1) == position);
             
-            all_cells_temp(:,5) = -all_cells_temp(:,5)+coordinates(indtemp1,3)*ones(size(all_cells_temp,1),1);
-            all_cells_temp(:,8)  = -all_cells_temp(:,8);
-            all_cells_temp(:,11) = -all_cells_temp(:,11);
-            all_cells_temp(:,14) = -all_cells_temp(:,14);
+            all_cells_temp(:,5) = all_cells_temp(:,5)+coordinates(indtemp1,3)*ones(size(all_cells_temp,1),1);
             all_cells_temp(:,6) = all_cells_temp(:,6)-coordinates(indtemp1,2)*ones(size(all_cells_temp,1),1);
             all_cells_temp(:,7) = all_cells_temp(:,7)+coordinates(indtemp1,4)*ones(size(all_cells_temp,1),1);
             
