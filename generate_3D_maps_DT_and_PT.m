@@ -11,21 +11,21 @@ for i = 1:gp
     if opt.nuclei
         if exist([opt.path{i},'nuclei_grid.mat'], 'file') == 0
             % compute and save nuclei features on the 3D grid
-            nuclei_features(opt,gp);
+            nuclei_features(opt,i);
         end
     end
     
     if opt.cells
         if exist([opt.path{i},'cells_grid.mat'], 'file') == 0
             % compute and save cell features on the 3D grid
-            cells_features(opt,gp);
+            cells_features(opt,i);
         end
     end
     
     if opt.crossed
         if exist([opt.path{i},'crossed_grid.mat'], 'file') == 0
             % compute and save crossed features on the 3D grid
-            crossed_features(opt,gp);
+            crossed_features(opt,i);
         end
     end
 end
