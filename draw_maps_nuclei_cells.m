@@ -229,5 +229,103 @@ for f = (length(names)-3):(length(names)-1)
     close all
 end
 
+% Orientations cross sections
+for f = (length(names)-3):(length(names)-1)
+    
+    amp = 60;
+    h1 = figure('units','normalized','outerposition',[0 0 1 1]),
+    
+    subplot(2,3,1)
+    THmin = 1;
+    THmax = 1;
+    PHImin = 1;
+    PHImax = 1;
+    
+    for i = 1:grid.nb_x,
+        for j = 1:grid.nb_y,
+            for k = 1:grid.nb_z,
+                if features.(names{2}).vals(i,j,k) >=10,
+                    
+                    hold on,
+                    TH = acos(features.(names{f}).orientations(i,j,k,3));
+                    PHI = atan2(features.(names{f}).orientations(i,j,k,2),features.(names{f}).orientations(i,j,k,1));
+                    THmin  = min(THmin, TH);
+                    PHImin  = min(THmin, TH);
+                    THmax  = max(THmax, TH);
+                    PHImax  = max(THmax, TH);
+                    line([features.centers(i,j,k,1);features.centers(i,j,k,1)+amp*features.(names{f}).orientations(i,j,k,1)],...
+                        [features.centers(i,j,k,2);features.centers(i,j,k,2)+amp*features.(names{f}).orientations(i,j,k,2)],...
+                        [features.centers(i,j,k,3);features.centers(i,j,k,3)+amp*features.(names{f}).orientations(i,j,k,3)],...
+                        'LineWidth',15*features.(names{f}).sph_var(i,j,k),'Color',[(1/2*sin(TH*2) + 1/2),(1/2*cos(PHI) + 1/2),(1/2*sin(PHI) + 1/2)])
+                    hold off,
+
+                end
+            end
+        end
+    end
+    
+    
+    xlabel('x');
+    ylabel('y');
+    zlabel('z');
+    
+    axis image
+    title(names{f})
+    view([visualization.az visualization.el]);
+    
+    colors_cross_sections = jet(5);
+    for cs =1:5,
+        
+        for i = floor(1+(cs-1)*grid.nb_x/5):ceil(cs*grid.nb_x/5),
+            for j = 1:grid.nb_y,
+                for k = 1:grid.nb_z,
+                    if features.(names{2}).vals(i,j,k) >=10,
+                        subplot(2,3,cs+1)
+                        hold on,
+                        TH = acos(features.(names{f}).orientations(i,j,k,3));
+                        PHI = atan2(features.(names{f}).orientations(i,j,k,2),features.(names{f}).orientations(i,j,k,1));
+                        THmin  = min(THmin, TH);
+                        PHImin  = min(THmin, TH);
+                        THmax  = max(THmax, TH);
+                        PHImax  = max(THmax, TH);
+                        line([features.centers(i,j,k,1);features.centers(i,j,k,1)+amp*features.(names{f}).orientations(i,j,k,1)],...
+                            [features.centers(i,j,k,2);features.centers(i,j,k,2)+amp*features.(names{f}).orientations(i,j,k,2)],...
+                            [features.centers(i,j,k,3);features.centers(i,j,k,3)+amp*features.(names{f}).orientations(i,j,k,3)],...
+                            'LineWidth',15*features.(names{f}).sph_var(i,j,k),'Color',[(1/2*sin(TH*2) + 1/2),(1/2*cos(PHI) + 1/2),(1/2*sin(PHI) + 1/2)])
+                        hold off,
+                        
+                        subplot(2,3,1)
+                        hold on,
+                        line([features.centers(i,j,k,1);features.centers(i,j,k,1)+amp*features.(names{f}).orientations(i,j,k,1)],...
+                            [features.centers(i,j,k,2);features.centers(i,j,k,2)+amp*features.(names{f}).orientations(i,j,k,2)],...
+                            [features.centers(i,j,k,3);features.centers(i,j,k,3)+amp*features.(names{f}).orientations(i,j,k,3)],...
+                            'LineWidth',15*features.(names{f}).sph_var(i,j,k),'Color',colors_cross_sections(cs,:))
+                        hold off,
+                    end
+                end
+            end
+        end
+        subplot(2,3,cs+1)
+        xlabel('x');
+        ylabel('y');
+        zlabel('z');
+        
+        axis image
+        title(['Cross section ', num2str(cs)],'Color', colors_cross_sections(cs,:))
+        view([-90,0]);
+    end
+    subplot(2,3,1)
+    view([visualization.az visualization.el]);
+    
+    % orientation cross-section
+    mkdir([opt.save_folder,'cross_section/']);
+    if opt.save_figs,
+        mkdir([opt.save_folder]);
+        saveas(h1,[opt.save_folder,'cross_section/',names{f},'_orientation']);
+        saveas(h1,[opt.save_folder,'cross_section/',names{f},'_orientation','.png']);
+    end
+    close all
+end
+
 end
 

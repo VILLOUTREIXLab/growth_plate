@@ -87,5 +87,4 @@ end
 % compute cell features on 3D grid
 characteristics_on_grid_cells(all_cells,opt,gp);
 
-
 end

@@ -28,6 +28,7 @@ features_grid.centroid_shift.min = 0;
 features_grid.centroid_shift.max = 0;
 features_grid.centroid_shift.title = 'Centroid Shift';
 features_grid.centroid_shift.scaling_factor = 1;
+features_grid.centroid_shift.scaling_factor_log = 100;
 
 features_grid.PC1_alignment.vals = zeros(grid.nb_x,grid.nb_y,grid.nb_z);
 features_grid.PC1_alignment.min = 0;
