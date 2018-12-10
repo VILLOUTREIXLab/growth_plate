@@ -5,6 +5,8 @@ function [] = generate_3D_maps_DT_and_PT(opt)
 %   the output of the function is a set of maps
 
 opt.path = [opt.path_DT;opt.path_PT];
+opt.flip_x_axis = [opt.flip_x_axis_DT_PT;opt.flip_x_axis_DT_PT];
+
 gp = length(opt.path);
 for i = 1:gp
     % compute features on the grid

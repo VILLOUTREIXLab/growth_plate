@@ -38,10 +38,16 @@ if exist([opt.path{gp},'all_crossed.mat'], 'file') == 0
             % organizing individual cell position in the global coordinate
             % system
             indtemp1 = find(coordinates(:,1) == position);
-            all_crossed_temp(:,2) = all_crossed_temp(:,2)+coordinates(indtemp1,3)*ones(size(all_crossed_temp,1),1);
-            all_crossed_temp(:,3) = all_crossed_temp(:,3)-coordinates(indtemp1,2)*ones(size(all_crossed_temp,1),1);
-            all_crossed_temp(:,4) = all_crossed_temp(:,4)+coordinates(indtemp1,4)*ones(size(all_crossed_temp,1),1);
             
+            if opt.flip_x_axis{gp},
+                all_crossed_temp(:,2) = - all_crossed_temp(:,2) - coordinates(indtemp1,3)*ones(size(all_crossed_temp,1),1);
+                all_crossed_temp(:,3) = all_crossed_temp(:,3)-coordinates(indtemp1,2)*ones(size(all_crossed_temp,1),1);
+                all_crossed_temp(:,4) = all_crossed_temp(:,4)+coordinates(indtemp1,4)*ones(size(all_crossed_temp,1),1);
+            else
+                all_crossed_temp(:,2) = all_crossed_temp(:,2)+coordinates(indtemp1,3)*ones(size(all_crossed_temp,1),1);
+                all_crossed_temp(:,3) = all_crossed_temp(:,3)-coordinates(indtemp1,2)*ones(size(all_crossed_temp,1),1);
+                all_crossed_temp(:,4) = all_crossed_temp(:,4)+coordinates(indtemp1,4)*ones(size(all_crossed_temp,1),1);
+            end
             % proportion of corresponding cells compared to number of
             % nuclei only
             indtemp1 = find(G.nuc.index);
@@ -77,6 +83,15 @@ if exist([opt.path{gp},'all_crossed.mat'], 'file') == 0
             all_crossed_temp(:,23:25) = vals{2}(:,1:3);
             all_crossed_temp(:,26:28) = vals{3}(:,1:3);
             all_crossed_temp(:,29:31) = G.cel.PCA_latent(indtemp,:);
+            
+            if opt.flip_x_axis{gp},
+                all_crossed_temp(:,8) = - all_crossed_temp(:,8);
+                all_crossed_temp(:,11) = - all_crossed_temp(:,11);
+                all_crossed_temp(:,14) = - all_crossed_temp(:,14);
+                all_crossed_temp(:,20) = - all_crossed_temp(:,20);
+                all_crossed_temp(:,23) = - all_crossed_temp(:,23);
+                all_crossed_temp(:,26) = - all_crossed_temp(:,26);
+            end
             
             all_crossed = [all_crossed;all_crossed_temp];
         end

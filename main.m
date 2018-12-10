@@ -20,6 +20,10 @@ presets
 % growth plate
 opt.path = {'data/Nuclei_and_Cells_DT_S18_m6_wt/';'data/Nuclei_and_Cells_PT_S18_m6_wt/'}
 
+% this option enables to flip the x axis (1: flipped, 0: not flipped) -
+% match the order of opt.path
+opt.flip_x_axis = {0;1};
+
 % dimensions of the grid
 opt.delta_x = 75;
 opt.delta_y = 75;
@@ -50,6 +54,10 @@ generate_3D_maps(opt);
 opt.path_DT = {'data/Nuclei_and_Cells_DT_S18_m6_wt/';'data/Nuclei_and_Cells_DT_S18_m6_wt/';}
 opt.path_PT = {'data/Nuclei_and_Cells_PT_S18_m6_wt/';'data/Nuclei_and_Cells_PT_S18_m6_wt/';}
 opt.specimen_name = {'S18_m6_wt';'S18_m6_wt_bis';}
+
+% this option enables to flip the x axis (1: flipped, 0: not flipped) -
+% match the order of opt.path_DT 
+opt.flip_x_axis_DT_PT = {0;1};
 
 % dimensions of the grid
 opt.delta_x = 75;
