@@ -30,7 +30,7 @@ if exist([opt.path{gp},'all_cells.mat'], 'file') == 0
         % here need to check if nuclear cell ratio is good
         if isfield(G,'inter')
             indtemp = find(G.inter.volume_ratio>1);
-        else 
+        else
             indtemp = find(G.cel.index);
         end
         if length(indtemp)>0,
@@ -61,14 +61,14 @@ if exist([opt.path{gp},'all_cells.mat'], 'file') == 0
                 all_cells_nuclei_temp(:,14) = - all_cells_nuclei_temp(:,14);
             else
                 all_cells_temp(:,5) = all_cells_temp(:,5)+coordinates(indtemp1,3)*ones(size(all_cells_temp,1),1);
-                all_cells_temp(:,6) = all_cells_temp(:,6)-coordinates(indtemp1,2)*ones(size(all_cells_temp,1),1);
-                all_cells_temp(:,7) = all_cells_temp(:,7)+coordinates(indtemp1,4)*ones(size(all_cells_temp,1),1);
             end
+            all_cells_temp(:,6) = all_cells_temp(:,6)-coordinates(indtemp1,2)*ones(size(all_cells_temp,1),1);
+            all_cells_temp(:,7) = all_cells_temp(:,7)+coordinates(indtemp1,4)*ones(size(all_cells_temp,1),1);
             all_cells = [all_cells;all_cells_temp];
         end
     end
     
-    % see if we include Delaunay Density for the cells 
+    % see if we include Delaunay Density for the cells
     if exist([opt.path{gp},'point_density_cells.mat'], 'file') == 0
         disp('Computing Delaunay density ...')
         [V,X,Y,Z, point_density] = calculate_nuclei_density(all_cells(:,[5,6,7]), [1, 1, 1], 2);

@@ -57,9 +57,9 @@ if exist([opt.path{gp},'all_cells_nuclei.mat'], 'file') == 0
                 all_cells_nuclei_temp(:,14) = - all_cells_nuclei_temp(:,14);
             else
                 all_cells_nuclei_temp(:,5) = all_cells_nuclei_temp(:,5)+coordinates(indtemp1,3)*ones(size(all_cells_nuclei_temp,1),1);
-                all_cells_nuclei_temp(:,6) = all_cells_nuclei_temp(:,6)-coordinates(indtemp1,2)*ones(size(all_cells_nuclei_temp,1),1);
-                all_cells_nuclei_temp(:,7) = all_cells_nuclei_temp(:,7)+coordinates(indtemp1,4)*ones(size(all_cells_nuclei_temp,1),1);
             end
+            all_cells_nuclei_temp(:,6) = all_cells_nuclei_temp(:,6)-coordinates(indtemp1,2)*ones(size(all_cells_nuclei_temp,1),1);
+            all_cells_nuclei_temp(:,7) = all_cells_nuclei_temp(:,7)+coordinates(indtemp1,4)*ones(size(all_cells_nuclei_temp,1),1);
             
             all_cells_nuclei = [all_cells_nuclei;all_cells_nuclei_temp];
         end

@@ -41,13 +41,12 @@ if exist([opt.path{gp},'all_crossed.mat'], 'file') == 0
             
             if opt.flip_x_axis{gp},
                 all_crossed_temp(:,2) = - all_crossed_temp(:,2) - coordinates(indtemp1,3)*ones(size(all_crossed_temp,1),1);
-                all_crossed_temp(:,3) = all_crossed_temp(:,3)-coordinates(indtemp1,2)*ones(size(all_crossed_temp,1),1);
-                all_crossed_temp(:,4) = all_crossed_temp(:,4)+coordinates(indtemp1,4)*ones(size(all_crossed_temp,1),1);
             else
                 all_crossed_temp(:,2) = all_crossed_temp(:,2)+coordinates(indtemp1,3)*ones(size(all_crossed_temp,1),1);
-                all_crossed_temp(:,3) = all_crossed_temp(:,3)-coordinates(indtemp1,2)*ones(size(all_crossed_temp,1),1);
-                all_crossed_temp(:,4) = all_crossed_temp(:,4)+coordinates(indtemp1,4)*ones(size(all_crossed_temp,1),1);
             end
+            all_crossed_temp(:,3) = all_crossed_temp(:,3)-coordinates(indtemp1,2)*ones(size(all_crossed_temp,1),1);
+            all_crossed_temp(:,4) = all_crossed_temp(:,4)+coordinates(indtemp1,4)*ones(size(all_crossed_temp,1),1);
+            
             % proportion of corresponding cells compared to number of
             % nuclei only
             indtemp1 = find(G.nuc.index);
@@ -55,7 +54,7 @@ if exist([opt.path{gp},'all_crossed.mat'], 'file') == 0
             
             % n/c ratio
             all_crossed_temp(:,6) = 1./G.inter.volume_ratio(indtemp);
-                        
+            
             % Centroid shift
             all_crossed_temp(:,7) = sqrt(G.inter.centroid_shift_physical_coords(indtemp,1).^2+G.inter.centroid_shift_physical_coords(indtemp,2).^2+G.inter.centroid_shift_physical_coords(indtemp,3).^2);
             
