@@ -55,15 +55,16 @@ if exist([opt.path{gp},'all_cells.mat'], 'file') == 0
             % system
             indtemp1 = find(coordinates(:,1) == position);
             if opt.flip_x_axis{gp},
-                all_cells_nuclei_temp(:,5) = - all_cells_nuclei_temp(:,5) - coordinates(indtemp1,3)*ones(size(all_cells_nuclei_temp,1),1);
-                all_cells_nuclei_temp(:,8) = - all_cells_nuclei_temp(:,8);
-                all_cells_nuclei_temp(:,11) = - all_cells_nuclei_temp(:,11);
-                all_cells_nuclei_temp(:,14) = - all_cells_nuclei_temp(:,14);
+                all_cells_temp(:,5) = - all_cells_temp(:,5) - coordinates(indtemp1,3)*ones(size(all_cells_temp,1),1);
+                all_cells_temp(:,8) = - all_cells_temp(:,8);
+                all_cells_temp(:,11) = - all_cells_temp(:,11);
+                all_cells_temp(:,14) = - all_cells_temp(:,14);
             else
                 all_cells_temp(:,5) = all_cells_temp(:,5)+coordinates(indtemp1,3)*ones(size(all_cells_temp,1),1);
             end
             all_cells_temp(:,6) = all_cells_temp(:,6)-coordinates(indtemp1,2)*ones(size(all_cells_temp,1),1);
             all_cells_temp(:,7) = all_cells_temp(:,7)+coordinates(indtemp1,4)*ones(size(all_cells_temp,1),1);
+            
             all_cells = [all_cells;all_cells_temp];
         end
     end
